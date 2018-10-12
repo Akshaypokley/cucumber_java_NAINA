@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="18.971456">
+<testcase classname="NAINA Application Login Action" name="NAINA Appliction login Test" time="18.971456">
+<failure message="org.junit.ComparisonFailure: expected:&lt;NAI[d]NA Integrated Approv...&gt; but was:&lt;NAI[]NA Integrated Approv...&gt;&#13;&#10;&#9;at org.junit.Assert.assertEquals(Assert.java:115)&#13;&#10;&#9;at org.junit.Assert.assertEquals(Assert.java:144)&#13;&#10;&#9;at StepDefination.NainaLoginstepdef.user_is_on_Home_page(NainaLoginstepdef.java:65)&#13;&#10;&#9;at ✽.And User is on Home page(E:/Akshay/SELENIUM/Projects/cucumber_java_NAINA/src/main/java/Features/Login.feature:8)&#13;&#10;"><![CDATA[Given User is already on  login page........................................passed
+When Title of login page NAINA..............................................passed
+Then User Enter login name And User enter password..........................passed
+And User click on login page................................................passed
+And User is on Home page....................................................failed
+
+StackTrace:
+org.junit.ComparisonFailure: expected:<NAI[d]NA Integrated Approv...> but was:<NAI[]NA Integrated Approv...>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at StepDefination.NainaLoginstepdef.user_is_on_Home_page(NainaLoginstepdef.java:65)
+	at ✽.And User is on Home page(E:/Akshay/SELENIUM/Projects/cucumber_java_NAINA/src/main/java/Features/Login.feature:8)
+]]></failure>
+</testcase>
+</testsuite>
