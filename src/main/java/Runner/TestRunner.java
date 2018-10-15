@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "E:\\Akshay\\SELENIUM\\Projects\\cucumber_java_NAINA\\src\\main\\java\\Features\\Taging.feature",
+        features = "E:\\Akshay\\SELENIUM\\Projects\\cucumber_java_NAINA\\src\\main\\java\\Features\\HooksConcept.feature",
         glue = {"StepDefination"},
       //  tags = {"~@Ignore"},
     //  dryRun = true,/*Cheking mapping betwemnn feature and steps defination ,Which method is missing in step defination */
