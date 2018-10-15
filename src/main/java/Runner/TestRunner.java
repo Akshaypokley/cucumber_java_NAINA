@@ -13,13 +13,17 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "E:\\Akshay\\SELENIUM\\Projects\\cucumber_java_NAINA\\src\\main\\java\\Features\\CreateProposal.feature",
+        features = "E:\\Akshay\\SELENIUM\\Projects\\cucumber_java_NAINA\\src\\main\\java\\Features\\Taging.feature",
         glue = {"StepDefination"},
-        tags = {"~@Ignore"},
+      //  tags = {"~@Ignore"},
     //  dryRun = true,/*Cheking mapping betwemnn feature and steps defination ,Which method is missing in step defination */
-dryRun = false ,/*browse lauching  */
+dryRun = false,/*browse lauching  */
       //  monochrome = true,/*it will genrate the output in redabel fromat*/
         //strict = true,/*excuting all properly mapping steps ,it will ceck any steps defination is not avalable */
+//tags = {"@RegressionTest,@EndToEndTest"}, /*, is a or oprator*/
+       tags = {"~@RegressionTest","~@SmokeTest"}, /*For ignoring any perticular secnario then used '~'*/
+
+
         format = {
                 "pretty",
                 "html:target/cucumber-reports/cucumber-pretty",

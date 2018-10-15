@@ -1,5 +1,5 @@
 package StepDefination;
-
+import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,33 +12,29 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-import javax.swing.*;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.sun.corba.se.spi.activation.IIOP_CLEAR_TEXT.value;
-import static com.sun.javafx.css.SizeUnits.PT;
-
 /**
- * Created by akshay.pokley on 10/11/2018.
+ * Created by akshay.pokley on 10/15/2018.
  */
-public class NainaLoginstepdef {
-public int N=1;
+public class CPDT {
+    public int N=1;
     public int N1=1;
     WebDriver driver;
 
-    @Given("^User is already on  login page$")
-    public void user_is_already_on_login_page() {
+
+    @Given("^User is already on login Screen$")
+    public void user_is_already_on_login_Screen() throws Throwable {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://192.168.1.2:8058/BPAMSClient/Default.aspx");
-
     }
 
-    @When("^Title of login page NAINA$")
-    public void title_of_login_page_NAINA() {
-
+    @When("^Title of login page  is NAINA$")
+    public void title_of_login_page_is_NAINA() throws Throwable {
         String title = driver.getTitle();
         System.out.println(title);
         try {
@@ -49,60 +45,43 @@ public int N=1;
 
     }
 
-    @Then("^User Enter login name And User enter password$")
-    public void user_Enter_login_name_And_User_enter_password() throws InterruptedException {
+    @Then("^User Enters username And User enters password$")
+    public void user_Enters_username_And_User_enters_password(DataTable arg1) throws Throwable {
+        List<List<String>> loginvaalue= arg1.raw(); /*List Object*/
+
         WebElement N1 = driver.findElement(By.xpath(".//*[@id='txtUN']"));
         Thread.sleep(2000);
         N1.clear();
         Thread.sleep(2000);
-        N1.sendKeys("ARP3");
+        N1.sendKeys(loginvaalue.get(0).get(0));
 
         WebElement N2 = driver.findElement(By.xpath(".//*[@id='txtPW']"));
         Thread.sleep(2000);
         N2.clear();
         Thread.sleep(2000);
-        N2.sendKeys("Autodcr@123");
+        N2.sendKeys(loginvaalue.get(0).get(1));
+
     }
 
-    @Then("^User click on login page$")
-    public void user_click_on_login_page() {
-
+    @Then("^User click on login Button$")
+    public void user_click_on_login_Button() throws Throwable {
         driver.findElement(By.xpath(".//*[@id='btnImgLog']/img")).click();
+
     }
 
-    @Then("^User is on Home page$")
-    public void user_is_on_Home_page() {
+    @Then("^User should have on home page$")
+    public void user_should_have_on_home_page() throws Throwable {
         String title = driver.findElement(By.xpath("./*//*[@id='lblULBName']")).getText();
         System.out.println(title);
         Assert.assertEquals("NAINA Integrated Approval Management System", title);
 
-    }
-
-
-    /*Reguler expresion
-    *1. \"([^\"]*)\"
-    *2. \*(.*)\*
-    */
-    @Then("^User Enters \"([^\"]*)\" And User enters \"([^\"]*)\"$")
-    public void user_Enters_And_User_enters(String UseNM, String Pass) throws Throwable {
-
-        WebElement N1 = driver.findElement(By.xpath(".//*[@id='txtUN']"));
-        Thread.sleep(2000);
-        N1.clear();
-        Thread.sleep(2000);
-        N1.sendKeys(UseNM);
-
-        WebElement N2 = driver.findElement(By.xpath(".//*[@id='txtPW']"));
-        Thread.sleep(2000);
-        N2.clear();
-        Thread.sleep(2000);
-        N2.sendKeys(Pass);
 
     }
 
+    @Then("^User Apply for Type of work$")
+    public void user_Apply_for_Type_of_work(DataTable arg1) throws Throwable {
+        List <List<String>> worktype=arg1.raw();
 
-    @Then("^User Apply for \"([^\"]*)\"$")
-    public void user_Apply_for_Building_Permission(String PErmisTypo) throws InterruptedException {
         Thread.sleep(2000);
         driver.switchTo().frame("ifrmListing");
 
@@ -111,62 +90,55 @@ public int N=1;
 
         for(WebElement PT:permission_type)
         {
-          String PTS=PT.getText();
-        if(PTS.equals(PErmisTypo))
-        {
-            PT.click();
-            break;
-        }
+            String PTS=PT.getText();
+            if(PTS.equals(worktype.get(0).get(0)))
+            {
+                PT.click();
+                break;
+            }
         }
 
         Thread.sleep(2000);
         driver.switchTo().frame("IframeAddProposal");
 
+
     }
 
-    @Then("^User Fill \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
-    public void user_Fill_project_info_and_applicant_Info(String caseType,String Permissiontype,String Location1,String City1,String Tahsil1,
-                                                          String Village2,String SurveyNo,String Ownercat2,String OName,String Emai,
-                                                          String Mob,String pan,String Addre,String cit,String stat,String Pin
-
-
-                                                          ) throws InterruptedException {
-
-
+    @Then("^User Fill Genral details and Applicant details$")
+    public void user_Fill_Genral_details_and_Applicant_details(DataTable arg1) throws Throwable {
+        List <List <String>>GPvalue=arg1.raw();
         WebElement Case_Type=driver.findElement(By.xpath(".//*[@id='cboCaseType']"));
         Select combo1=new Select(Case_Type);
-        combo1.selectByVisibleText(caseType);
-Thread.sleep(2000);
+        combo1.selectByVisibleText(GPvalue.get(0).get(0));
+        Thread.sleep(2000);
         WebElement PermisssionType=driver.findElement(By.xpath(".//*[@id='cboOffice']"));
         Select combo2=new Select(PermisssionType);
-        combo2.selectByVisibleText(Permissiontype);
+        combo2.selectByVisibleText(GPvalue.get(0).get(1));
         Thread.sleep(2000);
         WebElement Location=driver.findElement(By.xpath(".//*[@id='ddlLocation']"));
         Select combo3=new Select(Location);
-        combo3.selectByVisibleText(Location1);
+        combo3.selectByVisibleText(GPvalue.get(0).get(2));
         Thread.sleep(2000);
         WebElement City=driver.findElement(By.xpath(".//*[@id='cboLocation']"));
         Select combo4=new Select(City);
-        combo4.selectByVisibleText(City1);
+        combo4.selectByVisibleText(GPvalue.get(0).get(3));
 
-       try{
-
+        try{
+            driver.manage().timeouts().implicitlyWait(35, TimeUnit.SECONDS);
             List<WebElement> Tahsil= driver.findElements(By.xpath("./*//*[@id='CheckBoxListTahsil']/tbody/tr/td/label"));
 
             for(WebElement PT:Tahsil)
             {    Thread.sleep(5000);
                 String PTS=PT.getText();
                 Thread.sleep(5000);
-                if(PTS.equals(Tahsil1))
+                if(PTS.equals(GPvalue.get(0).get(4)))
                 {
-
-                    Thread.sleep(5000);
+                    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                     WebElement Tahsilcheck= driver.findElement(By.xpath("./*//*[@id='CheckBoxListTahsil']/tbody/tr["+N+"]/td/input"));
-                    Thread.sleep(5000);
-
+                    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                     Tahsilcheck.click();
                     ++N;
-break;
+                    break;
                 }else {
                     ++N;}
             }
@@ -178,18 +150,20 @@ break;
 
         try{
             Thread.sleep(5000);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             List<WebElement> Village= driver.findElements(By.xpath(".//*[@id='CheckBoxListVillage']/tbody/tr[1]/td/label"));
             Thread.sleep(5000);
             for(WebElement PT:Village)
             {   Thread.sleep(5000);
                 String PTS=PT.getText();
-                if(PTS.equals(Village2))
-                {   Thread.sleep(6000);
+                if(PTS.equals(GPvalue.get(0).get(5)))
+                {
+                    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                     WebElement Villagecheck= driver.findElement(By.xpath("./*//*[@id='CheckBoxListVillage']/tbody/tr["+N1+"]/td/input"));
-                    Thread.sleep(5000);
+                    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                     Villagecheck.click();
                     ++N1;
-break;
+                    break;
                 }else {
                     ++N1;}
             }
@@ -199,8 +173,8 @@ break;
         }
 
 
-Thread.sleep(200);
-        driver.findElement(By.xpath(".//*[@id='txSurveyNo']")).sendKeys(SurveyNo);
+        Thread.sleep(200);
+        driver.findElement(By.xpath(".//*[@id='txSurveyNo']")).sendKeys(GPvalue.get(0).get(6));
 
         driver.findElement(By.xpath(".//*[@id='liapplication']/a")).click();
 
@@ -221,22 +195,22 @@ Thread.sleep(200);
 
 
 
-List<WebElement> ownerCat=driver.findElements(By.xpath(".//*[@class='GLMenuBody GLEnumMenuBody']/div/div/div"));
-     for(WebElement oc:ownerCat)
-     {
-         String Owner=oc.getText();
+        List<WebElement> ownerCat=driver.findElements(By.xpath(".//*[@class='GLMenuBody GLEnumMenuBody']/div/div/div"));
+        for(WebElement oc:ownerCat)
+        {
+            String Owner=oc.getText();
 
-         if(Owner.equals(Ownercat2))
-         {
-             oc.click();
-             break;
-         }
-     }
+            if(Owner.equals(GPvalue.get(0).get(7)))
+            {
+                oc.click();
+                break;
+            }
+        }
         WebElement name= driver.findElement(By.xpath(".//*[@id='tgOwner']/tbody/tr[2]/td[2]/div/div[1]/table/tbody/tr[2]/td[5]"));
         Actions actions = new Actions(driver);
         actions.moveToElement(name);
         actions.doubleClick();
-        actions.sendKeys(OName);
+        actions.sendKeys(GPvalue.get(0).get(8));
         actions.build().perform();
         Thread.sleep(1000);
 
@@ -245,7 +219,7 @@ List<WebElement> ownerCat=driver.findElements(By.xpath(".//*[@class='GLMenuBody 
         Actions actions1 = new Actions(driver);
         actions1.moveToElement(Email);
         actions1.doubleClick();
-        actions1.sendKeys(Emai);
+        actions1.sendKeys(GPvalue.get(0).get(9));
         actions1.build().perform();
         Thread.sleep(1000);
 
@@ -253,7 +227,7 @@ List<WebElement> ownerCat=driver.findElements(By.xpath(".//*[@class='GLMenuBody 
         Actions actions2 = new Actions(driver);
         actions2.moveToElement(Mobile);
         actions2.doubleClick();
-        actions2.sendKeys(Mob);
+        actions2.sendKeys(GPvalue.get(0).get(10));
         actions2.build().perform();
         Thread.sleep(1000);
 
@@ -261,32 +235,37 @@ List<WebElement> ownerCat=driver.findElements(By.xpath(".//*[@class='GLMenuBody 
         Actions actions3 = new Actions(driver);
         actions3.moveToElement(PAN);
         actions3.doubleClick();
-        actions3.sendKeys(PAN);
+        Thread.sleep(1000);
+        actions3.sendKeys(GPvalue.get(0).get(11));
         actions3.build().perform();
         Thread.sleep(1000);
 
-        driver.findElement(By.xpath(".//*[@id='txtFlat']")).sendKeys(Addre);
-        driver.findElement(By.xpath(".//*[@id='txtCity']")).sendKeys(City1);
-        driver.findElement(By.xpath(".//*[@id='txtVillage']")).sendKeys(stat);
-        driver.findElement(By.xpath(".//*[@id='txtOwnerPin']")).sendKeys(Pin);
+        driver.findElement(By.xpath(".//*[@id='txtFlat']")).sendKeys(GPvalue.get(0).get(12));
+        driver.findElement(By.xpath(".//*[@id='txtCity']")).sendKeys(GPvalue.get(0).get(13));
+        driver.findElement(By.xpath(".//*[@id='txtVillage']")).sendKeys(GPvalue.get(0).get(14));
+        driver.findElement(By.xpath(".//*[@id='txtOwnerPin']")).sendKeys(GPvalue.get(0).get(15));
 
 
     }
 
-    @Then("^User click on save Button$")
-    public void user_click_on_save_Button() {
-    driver.findElement(By.xpath(".//*[@id='btnSave']")).click();
+    @Then("^User click on Submit Button$")
+    public void user_click_on_Submit_Button() throws Throwable {
+        driver.findElement(By.xpath(".//*[@id='btnSave']")).click();
+
     }
 
-    @Then("^User Accept Alert$")
-    public void user_Accept_Alert() throws InterruptedException {
+    @Then("^User Accept Alert message$")
+    public void user_Accept_Alert_message() throws Throwable {
         Thread.sleep(2000);
-driver.findElement(By.xpath(".//*//div/div[2]/a/span/span")).click();
+        driver.findElement(By.xpath(".//*//div/div[2]/a/span/span")).click();
+
     }
 
-    @Then("^Close Browser$")
-    public void close_Browser() throws Throwable {
+    @Then("^Close The Browser$")
+    public void close_The_Browser() throws Throwable {
         Thread.sleep(5000);
         driver.close();
+
     }
+
 }
