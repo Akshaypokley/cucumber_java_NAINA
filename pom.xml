@@ -55,10 +55,58 @@
             <artifactId>cucumber-junit</artifactId>
             <version>1.2.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.13.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vimalselvam</groupId>
+            <artifactId>cucumber-extentsreport</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>3.8.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>MyProjectName</projectName>  <!-- Replace with project name -->
+                            <outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>
+                            <cucumberOutput>target/cucumber-reports/CucumberTestReport.json</cucumberOutput>
+                            <buildNumber>1</buildNumber>
+                            <parallelTesting>false</parallelTesting>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

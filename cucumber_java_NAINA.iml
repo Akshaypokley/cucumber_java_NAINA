@@ -41,5 +41,16 @@
     <orderEntry type="library" name="Maven: info.cukes:gherkin:2.12.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: info.cukes:cucumber-jvm-deps:1.0.5" level="project" />
     <orderEntry type="library" name="Maven: info.cukes:cucumber-junit:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: org.testng:testng:6.13.1" level="project" />
+    <orderEntry type="library" name="Maven: com.beust:jcommander:1.72" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi:3.7" level="project" />
+    <orderEntry type="library" name="Maven: com.vimalselvam:cucumber-extentsreport:3.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.aventstack:extentreports:3.1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.23" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver:3.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:bson:3.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-core:3.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpmime:4.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.9.2" level="project" />
   </component>
 </module>
